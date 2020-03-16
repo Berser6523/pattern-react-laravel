@@ -1,12 +1,18 @@
-import React from 'react'
-import Home from "./pages/index"
-import { BrowserRouter, Route } from "react-router-dom";
+import React from "react";
+import Home from "./pages/index";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+const Teste = () => {
+    return <h1>olá teste</h1>;
+};
 
 const Router = () => (
     <BrowserRouter>
-        <Route exact path="/" component={Home} />
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/teste" component={Teste} />
+        </Switch>
     </BrowserRouter>
-)
+);
 
-export default Router
+export default Router;

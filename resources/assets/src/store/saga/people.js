@@ -1,20 +1,20 @@
-import { put, call } from 'redux-saga/effects'
+import { put, call } from "redux-saga/effects";
 
-import api from '../../services/api'
+import api from "../../services/api";
 
-async function apiGet(){
-    const response = await api.get('/?nat=br&results=30')
+async function apiGet() {
+    const response = await api.get("/?nat=br&results=30");
 
-    return response.data.results
+    return response.data.results;
 }
 
+export function* getPeople() {
+    try {
+        const response = yield call(apiGet);
 
-export function* getPeople(){
-    try{
-        const response = yield call(apiGet)
-        yield put({ type: 'SUCCESS_PEOPLE_LIST', data: response, filtro:""})
-    }catch(err){
-        console.log(err)
-        yield put({ type: 'FAILUIRE_PEOPLE_LIST', filtro:""})
+        yield put({ type: "SUCCESS_PEOPLE_LIST", data: response, filtro: "" });
+    } catch (err) {
+        console.log(err);
+        yield put({ type: "FAILUIRE_PEOPLE_LIST", filtro: "" });
     }
 }
